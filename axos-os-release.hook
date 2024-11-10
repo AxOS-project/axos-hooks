@@ -1,0 +1,12 @@
+## Copyright (C) 2024 Ardox
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = filesystem
+
+[Action]
+Description = Updating AxOS Specific Configurations...
+When = PostTransaction
+Exec = /usr/bin/axos-hooks-runner os-release

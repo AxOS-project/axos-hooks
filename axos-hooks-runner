@@ -1,0 +1,129 @@
+#!/bin/bash
+
+# AxOS hooks runner
+# This script is used to update parts of the AxOS system.
+# Usage: axos-hooks-runner <hook name>
+# Avaiable hooks:
+#   os-release:-------------------- replace the content of /etc/os-release with the latest content
+#   lsb-release:------------------- same as os-release but for /etc/lsb-release
+#   reload-theme:------------------ reload the users theme and config with the latest AxOS look (avaiable only after axskel update)
+#   bash-prompt-replace:----------- Replace the bash prompt of the user with 'λ ~'.
+#   reload-plymouth: -------------- Set the boot animation to the default AxOS theme
+#   full:-------------------------- Do Everything
+# WARNING: DO NOT EXECUTE UNLESS YOU KNOW WHAT YOU ARE DOING
+# Author: Ardox
+# Date: 2024
+# This file is part of the AxOS project.
+## Copyright (C) 2024 Ardox
+
+if [ -f /etc/axos-version ]; then
+    version=$(cat /etc/axos-version)
+else
+    version="24.08" # Because the new version system is above 24.08
+fi
+
+
+fix_lsb_release() {
+    local file=/etc/lsb-release
+
+    if [[ -z "`grep "^DISTRIB_RELEASE=" $file`" ]] ; then
+        # add missing DISTRIB_RELEASE=
+        echo "DISTRIB_RELEASE=rolling" >> "$file"
+    fi
+    sed -i "$file" \
+        -e 's|^DISTRIB_ID=.*$|DISTRIB_ID=axos|' \
+        -e "s|^DISTRIB_RELEASE=.*$|DISTRIB_RELEASE=$version|" \
+        -e 's|^DISTRIB_DESCRIPTION=.*$|DISTRIB_DESCRIPTION=\"AxOS\"|'
+}
+
+fix_os_release() {
+    local file=/usr/lib/os-release
+
+    sed -i "$file" \
+        -e 's|^NAME=.*$|NAME=\"AxOS\"|' \
+        -e 's|^PRETTY_NAME=.*$|PRETTY_NAME=\"AxOS\"|' \
+        -e 's|^ID=.*$|ID=axos|' \
+        -e 's|^ID_LIKE=.*$|ID_LIKE=axos|' \
+        -e 's|^BUILD_ID=.*$|BUILD_ID=rolling|' \
+        -e 's|^HOME_URL=.*$|HOME_URL=\"http://www.axos-project.com\"|' \
+        -e 's|^DOCUMENTATION_URL=.*$|DOCUMENTATION_URL=\"https://wiki.axos-project.com/\"|' \
+        -e 's|^SUPPORT_URL=.*$|SUPPORT_URL=\"https://github.com/AxOS-project/AxOS/\"|' \
+        -e 's|^BUG_REPORT_URL=.*$|BUG_REPORT_URL=\"https://github.com/AxOS-project/AxOS/issues\"|' \
+        -e 's|^LOGO=.*$|LOGO=axos|' \
+        -e "s|^VERSION=.*$|VERSION=$version|"
+
+    if [ -z "$(grep "^ID_LIKE=" $file)" ] && [ -n "$(grep "^ID=" $file)" ] ; then
+        # add missing ID_LIKE=
+        sed -i $file -e '/^ID=/a \ID_LIKE=axos'
+    fi
+
+    if ! grep -q "^VERSION=" "$file"; then
+        # add missing VERSION=
+        echo "VERSION=$version" >> "$file"
+    fi
+
+	# fix issue file
+    sed -i 's|Arch Linux|AxOS|g' /etc/issue /usr/share/factory/etc/issue
+}
+
+reload_theme() {
+    if pacman -Qs axskel-awesome > /dev/null; then
+        packagename=axskel-awesome
+    elif pacman -Qs axskel-hypr > /dev/null; then
+        packagename=axskel-hypr
+    else
+        packagename=axskel
+    fi
+    pacman -Sy $packagename --noconfirm
+	cp -r /etc/skel/.local $HOME/
+    cp -r /etc/skel/.config $HOME/
+    cp -r /etc/skel/.bashrc $HOME/
+}
+
+ps1_replace() {
+	local file=/etc/skel/.bashrc
+	echo 'PS1="\[\e[00;34m\]λ \W \[\e[0m\] "' | tee $file > /dev/null
+	cp $file $HOME
+}
+
+plymouth_theme_replace() {
+    plymouth-set-default-theme axos
+    mkinitcpio -p linux
+}
+
+main() {
+    local hookname="$1"
+
+    case "$hookname" in
+        os-release)  fix_os_release ;;
+        lsb-release) fix_lsb_release ;;
+        reload-theme) reload_theme ;;
+        reload-plymouth) plymouth_theme_replace ;;
+        bash-prompt-replace) ps1_replace;;
+        full)        fix_os_release
+                     fix_lsb_release
+                     ps1_replace
+                     reload_theme
+                     plymouth_theme_replace
+                     ;;
+
+	*)  echo "AxOS hooks runner"
+        echo "This script is used to update parts of the AxOS system."
+		echo "Usage: axos-hooks-runner <hook name>"
+		echo ""
+        echo ""
+		echo "Avaiable hooks:"
+        echo ""
+		echo "	 os-release:-------------------- replace the content of /etc/os-release with the latest content"
+		echo "	 lsb-release:------------------- same as os-release but for /etc/lsb-release"
+		echo "	 reload-theme:------------------ reload the users theme and config with the latest AxOS look (avaiable only after axskel update)"
+		echo "	 bash-prompt-replace:----------- Replace the bash prompt of the user with 'λ ~'."
+		echo "   reload-plymouth: -------------- Set the boot animation to the default AxOS theme"
+		echo "   full:-------------------------- Do Everything"
+		echo ""
+		echo "WARNING: DO NOT EXECUTE UNLESS YOU KNOW WHAT YOU ARE DOING"
+		;;
+    esac
+}
+
+main "$@"

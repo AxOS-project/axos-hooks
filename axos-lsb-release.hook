@@ -1,0 +1,12 @@
+## Copyright (C) 2024 Ardox
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = lsb-release
+
+[Action]
+Description = Updating AxOS LSB Configurations...
+When = PostTransaction
+Exec = /usr/bin/axos-hooks-runner lsb-release

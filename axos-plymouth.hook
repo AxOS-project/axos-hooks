@@ -1,0 +1,12 @@
+## Copyright (C) 2024 Ardox
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = plymouth
+
+[Action]
+Description = Updating AxOS Specific Configurations...
+When = PostTransaction
+Exec = /usr/bin/axos-hooks-runner reload-plymouth
