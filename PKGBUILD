@@ -1,7 +1,7 @@
 # Maintainer: Ardox
 
 pkgname="axos-hooks"
-pkgver=3.10
+pkgver=3.11
 pkgrel=1
 pkgdesc='Hooks for AxOS filesystem'
 arch=('x86_64')

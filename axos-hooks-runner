@@ -75,8 +75,13 @@ reload_theme() {
         packagename=axskel
     fi
     pacman -Sy $packagename --noconfirm
-	cp -r /etc/skel/.local $HOME/
-    cp -r /etc/skel/.config $HOME/
+	
+    if [ -d /etc/skel/.local ]; then
+        cp -r /etc/skel/.local $HOME/
+    fi
+    if [ -d /etc/skel/.config ]; then
+        cp -r /etc/skel/.config $HOME/
+    fi
     cp -r /etc/skel/.bashrc $HOME/
 }
 
