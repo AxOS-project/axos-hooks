@@ -1,7 +1,7 @@
 # Maintainer: Ardox
 
 pkgname="axos-hooks"
-pkgver=3.12
+pkgver=3.13
 pkgrel=1
 pkgdesc='Hooks for AxOS filesystem'
 arch=('x86_64')
@@ -25,7 +25,7 @@ source=(
 sha256sums=('b375a7b3669cc3807ee8ce1f3db52de0421bf58d0cc1af2db2ad549abe54f20b'
             'd5a418811752d03bdd84eb55204abfe55ed32da5ea2c523ec90fab5c2f8447fe'
             'cafa8c21eb2c4619d623d9edd596c7feb23c8f30323b505dc88dc7954f96fc3f'
-            'f69a309cc0243d4e8aab8b1bdaa23a6aeeaf2958ff060047f1d34ccdce697f20'
+            '0b9905821594ac691f166c0f4679cad99bb5172033d0a26b7e7eb1e8787e565d'
             'a47d75cf4d422bd8780aac566bb6fc7a827f2af3ecd8bfdbab5804d73b895a02'
             '7db2cc384826ce2fc90bbfee526157561e04991cdcb9ac8e789037db1719141b'
             '29d8cd2f85d7116394378b90e9b612de2b64f6354f03cd829d5f2ec9dd3eda77'
@@ -35,7 +35,7 @@ sha256sums=('b375a7b3669cc3807ee8ce1f3db52de0421bf58d0cc1af2db2ad549abe54f20b'
             '933eb942ed6e266f93243463a6a1cc811d9c5ccdc48fa89847fe775961a99279'
             '81eecdabee81aa907275a1faa95e41c704eefab9059a8a522775378d125760dd'
             'f74f9102b653032524bf16f48b4d5fb89303ed3f2b5871f26b597bf59fdcab5d')
-			
+
 package() {
 	local hooks="$pkgdir"/usr/share/libalpm/hooks
 	local pixmaps="$pkgdir"/usr/share/pixmaps

@@ -9,4 +9,4 @@ Target = sleex
 [Action]
 Description = Updating Sleex home configurations...
 When = PostTransaction
-Exec = cp -r /etc/skel/.config/hypr/hyprland/ ~/.config/hypr
+Exec = axctl load-sleex-user-config
