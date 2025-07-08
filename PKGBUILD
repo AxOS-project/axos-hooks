@@ -1,8 +1,8 @@
 # Maintainer: Ardox
 
 pkgname="axos-hooks"
-pkgver=3.13
-pkgrel=1
+pkgver=3.14
+pkgrel=2
 pkgdesc='Hooks for AxOS filesystem'
 arch=('x86_64')
 license=('GPL3')
@@ -25,7 +25,7 @@ source=(
 sha256sums=('b375a7b3669cc3807ee8ce1f3db52de0421bf58d0cc1af2db2ad549abe54f20b'
             'd5a418811752d03bdd84eb55204abfe55ed32da5ea2c523ec90fab5c2f8447fe'
             'cafa8c21eb2c4619d623d9edd596c7feb23c8f30323b505dc88dc7954f96fc3f'
-            '0b9905821594ac691f166c0f4679cad99bb5172033d0a26b7e7eb1e8787e565d'
+            '14ee99fb24a0022cb39eb8b3ead2c0cc676f39b973701b75b15ea3fe8aee8ed6'
             'a47d75cf4d422bd8780aac566bb6fc7a827f2af3ecd8bfdbab5804d73b895a02'
             '7db2cc384826ce2fc90bbfee526157561e04991cdcb9ac8e789037db1719141b'
             '29d8cd2f85d7116394378b90e9b612de2b64f6354f03cd829d5f2ec9dd3eda77'

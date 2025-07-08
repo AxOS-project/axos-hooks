@@ -5,8 +5,10 @@ Operation = Install
 Operation = Upgrade
 Type = Package
 Target = sleex
+Target = sleex-user-config
+Target = axskel-hypr
 
 [Action]
 Description = Updating Sleex home configurations...
 When = PostTransaction
-Exec = axctl load-sleex-user-config
+Exec = /usr/bin/axctl load-sleex-user-config
