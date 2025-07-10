@@ -5,8 +5,9 @@ Operation = Install
 Operation = Upgrade
 Type = Package
 Target = filesystem
+Target = lsb-release
 
 [Action]
 Description = Updating AxOS Specific Configurations...
 When = PostTransaction
-Exec = /usr/bin/axos-hooks-runner os-release
+Exec = /usr/bin/axctl update-releases
