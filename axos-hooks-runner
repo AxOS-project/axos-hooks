@@ -38,6 +38,7 @@ main() {
 
     case "$hookname" in
         bash-prompt-replace) ps1_replace;;
+        reload-plymouth) plymouth_theme_replace ;;
         full)        ps1_replace
                      plymouth_theme_replace
                      ;;
