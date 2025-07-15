@@ -51,7 +51,7 @@ fix_os_release() {
         -e 's|^BUG_REPORT_URL=.*$|BUG_REPORT_URL=\"https://github.com/AxOS-project/AxOS/issues\"|' \
         -e 's|^LOGO=.*$|LOGO=axos|' \
         -e "s|^VERSION=.*$|VERSION=$version|"
-
+}
 
 ps1_replace() {
 	local file=/etc/skel/.bashrc
