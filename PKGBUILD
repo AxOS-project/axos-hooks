@@ -2,7 +2,7 @@
 
 pkgname="axos-hooks"
 pkgver=3.15
-pkgrel=2
+pkgrel=3
 pkgdesc='Hooks for AxOS filesystem'
 arch=('x86_64')
 license=('GPL3')
