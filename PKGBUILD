@@ -23,13 +23,13 @@ sha256sums=('cd380aabc1b1130bc05bd493e61330c3f6976a7716b62c405b494fce57ce9b71'
             '14ee99fb24a0022cb39eb8b3ead2c0cc676f39b973701b75b15ea3fe8aee8ed6'
             'a47d75cf4d422bd8780aac566bb6fc7a827f2af3ecd8bfdbab5804d73b895a02'
             '7db2cc384826ce2fc90bbfee526157561e04991cdcb9ac8e789037db1719141b'
-            'ca2607c635a77490412d9b1323cde7abd71a07c396b50b0b6161c05ba777d330'
+            'dd341b87b148fd6d9aaf7c18bd9ebf06ef35b043f5dfc02cce26b162ccdc4202'
             'c069eacd2fb09b6d648dea897bc4de4f8f26c9cf04ddfdd5d39019b13eafcd21'
             '22f2eff360ef6f68f9af2ae709345299a147233123a7f90d34e1e03e29bef628'
             '81eecdabee81aa907275a1faa95e41c704eefab9059a8a522775378d125760dd'
             '933eb942ed6e266f93243463a6a1cc811d9c5ccdc48fa89847fe775961a99279'
             '81eecdabee81aa907275a1faa95e41c704eefab9059a8a522775378d125760dd')
-			
+						
 package() {
 	local hooks="$pkgdir"/usr/share/libalpm/hooks
 	local pixmaps="$pkgdir"/usr/share/pixmaps
