@@ -72,6 +72,7 @@ main() {
         reload-plymouth) plymouth_theme_replace ;;
         reload-releases) fix_os_release
                          fix_lsb_release ;;
+                         /usr/bin/axctl update-releases
         full)        ps1_replace
                      plymouth_theme_replace
                      fix_os_release
