@@ -1,14 +1,14 @@
 # Maintainer: Ardox
 
 pkgname="axos-hooks"
-pkgver=3.15
-pkgrel=6
+pkgver=3.16
+pkgrel=1
 pkgdesc='Hooks for AxOS filesystem'
 arch=('x86_64')
 license=('GPL3')
 source=(
 		'axos-release.hook'
-		'axos-sleex-skel.hook'
+		'axos-sleex-kbs.hook'
 		'axos-reboot-required.hook'
 		'axos-plymouth.hook'
 		'axos-hooks-runner'
@@ -20,7 +20,7 @@ source=(
 )
 
 sha256sums=('9fb90095f3e5b3a31711e95293d2a37a0a3c7dd29805f0c2288f79e676aeaffe'
-            '14ee99fb24a0022cb39eb8b3ead2c0cc676f39b973701b75b15ea3fe8aee8ed6'
+            '3cb84b39d0cba718ce8de2805ebaa27c7e82dd1b3052a9024938c33b4fe38dcb'
             'a47d75cf4d422bd8780aac566bb6fc7a827f2af3ecd8bfdbab5804d73b895a02'
             '7db2cc384826ce2fc90bbfee526157561e04991cdcb9ac8e789037db1719141b'
             '55df4f522d8c3640db596369a9ff4137cf0bf6777a3529789208de1e2afa97da'
@@ -38,7 +38,7 @@ package() {
 	install -Dm 644 axos-release.hook      "$hooks"/axos-release.hook
 	install -Dm 644 axos-reboot-required.hook  "$hooks"/axos-reboot-required.hook
 	install -Dm 664 axos-plymouth.hook         "$hooks"/axos-plymouth.hook
-	install -Dm 664 axos-sleex-skel.hook         "$hooks"/axos-sleex-skel.hook
+	install -Dm 664 axos-sleex-kbs.hook         "$hooks"/axos-sleex-kbs.hook
 
 	install -Dm 755 axos-hooks-runner         	"$bin"/axos-hooks-runner
 	install -Dm 755 axos-reboot-required       "$bin"/axos-reboot-required

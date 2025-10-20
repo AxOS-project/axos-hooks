@@ -11,4 +11,4 @@ Target = axskel-hypr
 [Action]
 Description = Updating Sleex home configurations...
 When = PostTransaction
-Exec = /usr/bin/axctl load-sleex-user-config
+Exec = /usr/bin/axctl apply-default-sleex-keybinds
